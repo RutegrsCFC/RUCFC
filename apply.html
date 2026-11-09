@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="apply.metaTitle">Membership Enquiries — RCFC</title>
+  <meta name="description" content="Membership enquiries for the Rutgers Chinese Finance Club.">
+  <meta name="theme-color" content="#212730">
+  <script>
+    /* Hide reveal targets before first paint so they don't flash and then fade in. */
+    try {
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) document.documentElement.classList.add("js-motion");
+    } catch (e) {}
+  </script>
+  <link rel="icon" type="image/png" href="assets/mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-apply">
+  <a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- A standalone page: logo, a way back, and the language switch. No section menu. -->
+  <header class="nav nav--page">
+    <div class="nav__inner wrap">
+      <a class="brand" href="./" data-i18n-attr="aria-label:a11y.home" aria-label="RCFC — home">
+        <img class="brand__mark" src="assets/mark.png" width="40" height="40" alt="">
+        <span class="brand__text">
+          <span class="brand__name">RCFC</span>
+          <span class="brand__sub" data-i18n="brand.sub">Rutgers Chinese Finance Club</span>
+        </span>
+      </a>
+
+      <div class="nav__tools">
+        <a class="nav__back" href="./"><span data-i18n="apply.back">Back to site</span></a>
+        <div class="lang" role="group" data-i18n-attr="aria-label:a11y.lang" aria-label="Language">
+          <button class="lang__btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang__btn" type="button" data-lang="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="applypage">
+    <div class="applypage__media" aria-hidden="true"><img src="assets/photos/skyline.jpg" alt=""></div>
+
+    <div class="wrap applypage__body">
+      <div class="applypage__intro reveal">
+        <p class="sec-label sec-label--light"><span data-i18n="nav.membership">Membership</span></p>
+        <h1 class="applypage__title" data-i18n="membership.title">Membership Enquiries</h1>
+        <p class="applypage__line" data-i18n="membership.line">Students who share our standards are welcome to request further information.</p>
+      </div>
+
+      <!-- Posts to the club's Google Form. Field names are that form's entry IDs; option values must match its choices exactly. -->
+      <div class="apply reveal" id="apply">
+        <form class="apply__form" action="https://docs.google.com/forms/d/e/1FAIpQLSejjOl4pe0uux4EFgA-422cIIHpvoisIeId5vv1sS0zmfvwCQ/formResponse" method="post">
+          <div class="field">
+            <label class="field__label" for="apply-name"><span data-i18n="apply.name">Name</span></label>
+            <input class="field__input" id="apply-name" name="entry.1506871634" type="text" autocomplete="name" maxlength="120" required aria-describedby="apply-name-err">
+            <p class="field__err" id="apply-name-err" data-i18n="apply.errName" hidden>Please enter your name.</p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="apply-email"><span data-i18n="apply.email">Scarletmail</span></label>
+            <input class="field__input" id="apply-email" name="entry.147453066" type="email" autocomplete="email" inputmode="email" maxlength="200" placeholder="netid@scarletmail.rutgers.edu" required aria-describedby="apply-email-err">
+            <p class="field__err" id="apply-email-err" data-i18n="apply.errEmail" hidden>Please enter a valid email address.</p>
+          </div>
+
+          <fieldset class="field">
+            <legend class="field__label"><span data-i18n="apply.why">Why would you like to join?</span><span class="field__opt" data-i18n="apply.optional">Optional</span></legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="entry.1576637996" value="学习金融知识 Learning"><span data-i18n="apply.why1">Learn finance</span></label>
+              <label class="chip"><input type="radio" name="entry.1576637996" value="结交各路朋友 Connection"><span data-i18n="apply.why2">Make connections</span></label>
+              <label class="chip"><input type="radio" name="entry.1576637996" value="赋能职业道路 Network"><span data-i18n="apply.why3">Advance my career</span></label>
+              <label class="chip"><input type="radio" name="entry.1576637996" value="__other_option__"><span data-i18n="apply.whyOther">Other</span></label>
+            </div>
+            <input class="field__input" id="apply-other" name="entry.1576637996.other_option_response" type="text" maxlength="300" hidden data-i18n-attr="placeholder:apply.otherPh;aria-label:apply.otherLabel" placeholder="Tell us more" aria-label="Other reason" aria-describedby="apply-other-err">
+            <p class="field__err" id="apply-other-err" data-i18n="apply.errOther" hidden>Please tell us your reason.</p>
+          </fieldset>
+
+          <div class="field">
+            <label class="field__label" for="apply-note"><span data-i18n="apply.note">What draws you to the club, and what do you hope to gain from it?</span><span class="field__opt" data-i18n="apply.optional">Optional</span></label>
+            <textarea class="field__input field__area" id="apply-note" name="entry.2071656823" rows="4" maxlength="2000"></textarea>
+          </div>
+
+          <!-- Spam trap: hidden from people, filled in by bots. -->
+          <div class="apply__hp" aria-hidden="true">
+            <label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <p class="apply__fail" data-i18n="apply.failed" role="alert" hidden>Your enquiry could not be sent. Please check your connection and try again, or use the Google Form below.</p>
+
+          <div class="apply__foot">
+            <button class="btn btn--light apply__submit" type="submit">
+              <span class="apply__idle" data-i18n="apply.submit">Submit Enquiry</span>
+              <span class="apply__busy" data-i18n="apply.sending" hidden>Sending…</span>
+              <i class="arrow" aria-hidden="true"></i>
+            </button>
+            <a class="apply__alt" href="https://docs.google.com/forms/d/e/1FAIpQLSejjOl4pe0uux4EFgA-422cIIHpvoisIeId5vv1sS0zmfvwCQ/viewform?usp=header" target="_blank" rel="noopener" data-i18n="apply.alt">Or open the Google Form</a>
+          </div>
+        </form>
+
+        <div class="apply__done" tabindex="-1" hidden>
+          <span class="apply__done-dash" aria-hidden="true"></span>
+          <p class="apply__done-t" data-i18n="apply.doneTitle">Thank you. Your enquiry has been submitted.</p>
+          <p class="apply__done-d" data-i18n="apply.doneBody">We will be in touch at your Scarletmail address.</p>
+          <a class="link link--light apply__home" href="./"><span data-i18n="apply.back">Back to site</span></a>
+        </div>
+      </div>
+    </div>
+
+    <p class="wrap applypage__base">
+      <span>© 2026 Rutgers Chinese Finance Club</span>
+      <span data-i18n="footer.disclaimer">An independent student organization at Rutgers University.</span>
+    </p>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

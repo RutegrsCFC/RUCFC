@@ -87,6 +87,29 @@
       "membership.line": "Students who share our standards are welcome to request further information.",
       "membership.cta": "Request Information",
 
+      "apply.metaTitle": "Membership Enquiries — RCFC",
+      "apply.back": "Back to site",
+      "apply.name": "Name",
+      "apply.email": "Scarletmail",
+      "apply.why": "Why would you like to join?",
+      "apply.why1": "Learn finance",
+      "apply.why2": "Make connections",
+      "apply.why3": "Advance my career",
+      "apply.whyOther": "Other",
+      "apply.otherPh": "Tell us more",
+      "apply.otherLabel": "Other reason",
+      "apply.note": "What draws you to the club, and what do you hope to gain from it?",
+      "apply.optional": "Optional",
+      "apply.errName": "Please enter your name.",
+      "apply.errEmail": "Please enter a valid email address.",
+      "apply.errOther": "Please tell us your reason.",
+      "apply.submit": "Submit Enquiry",
+      "apply.sending": "Sending…",
+      "apply.failed": "Your enquiry could not be sent. Please check your connection and try again, or use the Google Form below.",
+      "apply.alt": "Or open the Google Form",
+      "apply.doneTitle": "Thank you. Your enquiry has been submitted.",
+      "apply.doneBody": "We will be in touch at your Scarletmail address.",
+
       "footer.uni": "Rutgers University–New Brunswick",
       "footer.follow": "Official Channels",
       "footer.disclaimer": "An independent student organization at Rutgers University."
@@ -173,6 +196,29 @@
       "membership.title": "入会咨询",
       "membership.line": "认同本会准则的同学，欢迎索取入会相关信息。",
       "membership.cta": "索取信息",
+
+      "apply.metaTitle": "入会咨询 — RCFC",
+      "apply.back": "返回主页",
+      "apply.name": "姓名",
+      "apply.email": "罗格斯邮箱（Scarletmail）",
+      "apply.why": "为什么想加入本会？",
+      "apply.why1": "学习金融知识",
+      "apply.why2": "结交各路朋友",
+      "apply.why3": "赋能职业道路",
+      "apply.whyOther": "其他",
+      "apply.otherPh": "请简单说明",
+      "apply.otherLabel": "其他原因",
+      "apply.note": "本会有什么吸引你？你希望在这里获得什么？",
+      "apply.optional": "选填",
+      "apply.errName": "请填写姓名。",
+      "apply.errEmail": "请填写有效的邮箱地址。",
+      "apply.errOther": "请填写你的原因。",
+      "apply.submit": "提交申请",
+      "apply.sending": "提交中…",
+      "apply.failed": "提交失败。请检查网络后重试，或使用下方的 Google 表单。",
+      "apply.alt": "或打开 Google 表单填写",
+      "apply.doneTitle": "感谢，你的申请已提交。",
+      "apply.doneBody": "我们会通过你的 Scarletmail 邮箱与你联系。",
 
       "footer.uni": "罗格斯大学新布朗斯维克校区",
       "footer.follow": "官方渠道",
@@ -529,6 +575,93 @@
       heroImg.addEventListener("error", once);
       setTimeout(once, 1200);
     }
+  }
+
+  /* ---------- Membership enquiry form (apply.html) ----------
+     Posts straight to the club's Google Form. The request is cross-origin and opaque
+     (no-cors), so the page cannot read Google's answer: a rejected submission would
+     look sent. Validation here must therefore be at least as strict as the Google
+     form's own (name required; email required and email-shaped). */
+  var applyForm = document.querySelector(".apply__form");
+  if (applyForm && window.fetch && window.URLSearchParams) {
+    var WHY = "entry.1576637996";
+    var OTHER = "__other_option__";
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var nameIn = document.getElementById("apply-name");
+    var emailIn = document.getElementById("apply-email");
+    var otherIn = document.getElementById("apply-other");
+    var noteIn = document.getElementById("apply-note");
+    var trap = applyForm.querySelector('.apply__hp input');
+    var submitBtn = applyForm.querySelector(".apply__submit");
+    var failMsg = applyForm.querySelector(".apply__fail");
+    var doneBox = document.querySelector(".apply__done");
+    var sending = false;
+
+    applyForm.noValidate = true; // our messages follow the language toggle; the browser's don't
+
+    var whyValue = function () {
+      var r = applyForm.querySelector('input[name="' + WHY + '"]:checked');
+      return r ? r.value : "";
+    };
+    var check = function (el) {
+      var v = el.value.trim();
+      var bad = el === nameIn ? !v
+        : el === emailIn ? !EMAIL_RE.test(v)
+        : el === otherIn ? !otherIn.hidden && !v
+        : false;
+      if (bad) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid");
+      var err = document.getElementById(el.getAttribute("aria-describedby"));
+      if (err) err.hidden = !bad;
+      return !bad;
+    };
+    var setSending = function (on) {
+      sending = on;
+      submitBtn.disabled = on;
+      applyForm.setAttribute("aria-busy", on ? "true" : "false");
+      submitBtn.querySelector(".apply__idle").hidden = on;
+      submitBtn.querySelector(".apply__busy").hidden = !on;
+    };
+    var finish = function () {
+      applyForm.hidden = true;
+      doneBox.hidden = false;
+      doneBox.focus();
+    };
+
+    applyForm.addEventListener("change", function (e) {
+      if (e.target.name !== WHY) return;
+      var other = whyValue() === OTHER;
+      otherIn.hidden = !other;
+      if (other) otherIn.focus(); else check(otherIn);
+    });
+    // Once a field has been flagged, re-check it as the visitor fixes it.
+    applyForm.addEventListener("input", function (e) {
+      if (e.target.getAttribute("aria-invalid") === "true") check(e.target);
+    });
+
+    applyForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (sending) return;
+      var firstBad = null;
+      [nameIn, emailIn, otherIn].forEach(function (el) { if (!check(el) && !firstBad) firstBad = el; });
+      if (firstBad) { firstBad.focus(); return; }
+      if (trap && trap.value) { finish(); return; } // a bot filled the hidden field: pretend, send nothing
+
+      var body = new URLSearchParams();
+      body.append(nameIn.name, nameIn.value.trim());
+      body.append(emailIn.name, emailIn.value.trim());
+      var why = whyValue();
+      if (why) {
+        body.append(WHY, why);
+        if (why === OTHER) body.append(otherIn.name, otherIn.value.trim());
+      }
+      if (noteIn.value.trim()) body.append(noteIn.name, noteIn.value.trim());
+
+      failMsg.hidden = true;
+      setSending(true);
+      fetch(applyForm.action, { method: "POST", mode: "no-cors", body: body })
+        .then(function () { setSending(false); finish(); })
+        .catch(function () { setSending(false); failMsg.hidden = false; });
+    });
   }
 
   applyLang(readLang());

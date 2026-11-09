@@ -509,6 +509,129 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .membership__title [lang="zh-Hans"] { letter-spacing: 0; line-height: 1.15; }
 .membership__line { margin: 28px 0 44px; font-size: clamp(18px, 1.5vw, 21px); color: rgba(255,255,255,.75); max-width: 40ch; }
 
+/* ---------- Membership enquiry page (apply.html) ---------- */
+.page-apply { background: var(--navy-deep); }
+/* No section menu here, so the brand stays put when scrolled (the home page slides it out). */
+.nav--page.is-scrolled .brand { transform: none !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+/* "Back" is a capsule matching the language switch beside it. */
+.nav__back {
+  display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px;
+  border-radius: 999px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,.86);
+  background: rgba(22, 26, 33, .5); border: 1px solid rgba(255, 255, 255, .14);
+  -webkit-backdrop-filter: saturate(140%) blur(12px); backdrop-filter: saturate(140%) blur(12px);
+  transition: background-color .25s var(--ease), color .25s var(--ease);
+}
+.nav__back::before { content: "←"; transition: transform .3s var(--ease); }
+.nav__back:hover { background: var(--white); color: var(--navy); }
+.nav__back:hover::before { transform: translateX(-3px); }
+
+.applypage {
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column;
+  color: var(--white); background: var(--navy);
+}
+.applypage__media { position: fixed; inset: 0; }
+.applypage__media img { width: 100%; height: 100%; object-fit: cover; }
+.applypage__media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(22,26,33,.95) 0%, rgba(22,26,33,.84) 50%, rgba(22,26,33,.62) 100%);
+}
+.applypage__body {
+  position: relative; flex: 1;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  gap: clamp(48px, 7vw, 112px); align-items: start;
+  padding-top: clamp(128px, 18vh, 200px); padding-bottom: 80px;
+}
+.applypage__intro { position: sticky; top: 140px; }
+.applypage__title {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(44px, 5.6vw, 88px); line-height: 1; letter-spacing: -0.045em;
+  max-width: 11ch;
+}
+.applypage__title [lang="zh-Hans"] { letter-spacing: 0; line-height: 1.15; }
+.applypage__line { margin-top: 28px; font-size: clamp(18px, 1.5vw, 21px); color: rgba(255,255,255,.75); max-width: 36ch; }
+.applypage__base {
+  position: relative; display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between;
+  padding-top: 24px; padding-bottom: 32px; border-top: 1px solid var(--navy-line);
+  font-size: 12px; color: rgba(255,255,255,.45);
+}
+
+/* The enquiry form posts to the club's Google Form (see main.js). */
+.apply {
+  position: relative;
+  background: rgba(22, 26, 33, .74);
+  border: 1px solid var(--navy-line);
+  -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%);
+  padding: clamp(28px, 3.4vw, 48px);
+}
+.apply [hidden] { display: none !important; }
+.apply__form { display: grid; gap: 28px; }
+.field { display: grid; gap: 10px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.field__label { padding: 0; font-size: 14px; font-weight: 500; line-height: 1.45; color: rgba(255,255,255,.86); }
+legend.field__label { margin-bottom: 10px; } /* a legend sits outside the fieldset's grid gap */
+.field__opt { margin-left: 10px; font-size: 12px; font-weight: 400; color: rgba(255,255,255,.45); }
+.field__input {
+  width: 100%; margin: 0; border-radius: 0; -webkit-appearance: none; appearance: none;
+  font: inherit; font-size: 16px; line-height: 1.4; color: var(--white);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 14px 16px;
+  transition: border-color .2s, background-color .2s;
+}
+.field__input::placeholder { color: rgba(255,255,255,.34); }
+.field__input:hover { border-color: rgba(255,255,255,.42); }
+.field__input:focus { outline: none; border-color: var(--white); background: rgba(255,255,255,.07); }
+.field__input[aria-invalid="true"] { border-color: var(--coral); }
+.field__input:-webkit-autofill {
+  -webkit-text-fill-color: var(--white); caret-color: var(--white);
+  -webkit-box-shadow: 0 0 0 1000px #262C36 inset; transition: background-color 9999s;
+}
+.field__area { min-height: 128px; resize: vertical; }
+.field__err { font-size: 13px; color: var(--coral); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 16px;
+  font-size: 14px; color: rgba(255,255,255,.86); cursor: pointer;
+  border: 1px solid rgba(255,255,255,.22);
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+}
+.chip input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.chip:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
+.chip:has(input:checked) { background: var(--white); border-color: var(--white); color: var(--navy); }
+.chip:has(input:focus-visible) { outline: 2px solid var(--coral); outline-offset: 3px; }
+
+.apply__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.apply__fail { font-size: 14px; color: var(--coral); }
+.apply__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.apply__submit[disabled] { opacity: .65; cursor: progress; }
+.apply__alt {
+  font-size: 13px; color: rgba(255,255,255,.55);
+  text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.28);
+  transition: color .2s;
+}
+.apply__alt:hover { color: var(--white); }
+
+.apply__done:focus { outline: none; }
+.apply__done-dash { display: block; width: 28px; height: 2px; background: var(--coral); margin-bottom: 24px; }
+.apply__done-t { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 2.4vw, 34px); line-height: 1.2; letter-spacing: -0.02em; }
+.apply__done-t [lang="zh-Hans"] { letter-spacing: 0; }
+.apply__done-d { margin-top: 14px; color: rgba(255,255,255,.72); }
+.apply__home { margin-top: 32px; }
+
+@media (max-width: 1080px) {
+  .applypage__body { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 120px; }
+  .applypage__intro { position: static; }
+}
+@media (max-width: 760px) {
+  .applypage__body { padding-top: 100px; padding-bottom: 48px; }
+  .applypage__title { font-size: clamp(40px, 11vw, 56px); }
+  .apply { padding: 24px 20px 28px; margin: 0 calc(-1 * var(--gutter) + 8px); }
+  .apply__submit { width: 100%; justify-content: space-between; }
+  .nav--page .nav__tools { gap: 10px; }
+  .nav__back { height: 36px; padding: 0 14px; font-size: 13px; }
+}
+
 /* ---------- Footer ---------- */
 .footer { background: var(--navy); color: var(--white); padding-top: 80px; border-top: 1px solid var(--navy-line); }
 .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 64px; }
