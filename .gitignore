@@ -1,18 +1,7 @@
-# Dependency directories
-node_modules/
-
-# Local environment
-.env
-.env*.local
-.newsletter/
-
-# Next.js build output
-.next/
-out/
-
-# OS Files
 .DS_Store
-Thumbs.db
-
-# Claude Code local dev config
-.claude/
+_v1/
+_site/
+quotes.json
+assets/logo-dark.png
+assets/logo-light.png
+assets/logo-light-600.png
