@@ -575,7 +575,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: relative; overflow: hidden; color: var(--white); background: var(--navy);
   padding: clamp(120px, 15vw, 200px) 0;
 }
-.membership__media { position: absolute; inset: 0; }
+.membership__media { position: absolute; inset: 0; overflow: hidden; }
 .membership__media img { width: 100%; height: 100%; object-fit: cover; }
 .membership__media::after {
   content: ""; position: absolute; inset: 0;
@@ -728,6 +728,59 @@ legend.field__label { margin-bottom: 10px; } /* a legend sits outside the fields
   display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between;
   padding-top: 24px; padding-bottom: 32px; border-top: 1px solid var(--navy-line);
   font-size: 12px; color: rgba(255,255,255,.45);
+}
+
+/* ---------- Scroll motion ----------
+   --fx (0-1) is each [data-fx] block's progress through the screen, set by main.js.
+   --amp scales every movement: 1 desktop, ~.5 touch / low-power, 0 reduced motion
+   (and 0 before the script runs, so nothing is ever left offset). Only translate,
+   scale and opacity are animated; the separate properties compose with the
+   existing intro and hover transforms instead of overriding them. */
+:root { --amp: 0; }
+[data-fx] { --fx: .5; }
+[data-fx].fx-on img { will-change: translate, scale; }
+
+/* Hero: copy lifts and fades as the page scrolls away, the city drifts slower behind it */
+.hero[data-fx="exit"] { --fx: 0; }
+.hero__body { translate: 0 calc(var(--fx) * -96px * var(--amp)); opacity: calc(1 - var(--fx) * 1.15 * min(1, var(--amp) * 4)); }
+.hero__media { translate: 0 calc(var(--fx) * 14% * var(--amp)); }
+
+/* Section headings drift sideways a little as they pass */
+.sec-head .statement, .events__head .statement, .statement[data-fx] {
+  translate: calc((.5 - var(--fx)) * 56px * var(--amp)) 0;
+}
+
+/* New York and Shanghai move in opposite directions: the two markets, side by side */
+.cities .city__img img { scale: calc(1 + .16 * var(--amp)); translate: 0 calc((var(--fx) - .5) * -16% * var(--amp)); }
+.cities .city--offset .city__img img { translate: 0 calc((var(--fx) - .5) * 16% * var(--amp)); }
+.cities .city--offset { translate: 0 calc((.5 - var(--fx)) * 48px * var(--amp)); }
+
+/* Event photos parallax inside their frames; the small cards travel at different speeds */
+.events__grid .event__img img { translate: 0 calc((var(--fx) - .5) * -10% * var(--amp)); scale: calc(1 + .1 * var(--amp)); }
+.events__grid .event:nth-child(2) { translate: 0 calc((.5 - var(--fx)) * 36px * var(--amp)); }
+.events__grid .event:nth-child(3) { translate: 0 calc((.5 - var(--fx)) * 72px * var(--amp)); }
+
+/* Membership: the skyline pulls back as the section arrives, the copy rises over it */
+.membership__media img { scale: calc(1 + max(0, .62 - var(--fx)) * .32 * var(--amp)); }
+.membership__body { translate: 0 calc((.5 - var(--fx)) * 64px * var(--amp)); }
+
+/* Executive board: officers arrive one after another */
+.js-motion .eboard .officer { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.js-motion .eboard.is-in .officer { opacity: 1; transform: none; }
+.js-motion .eboard.is-in .officer:nth-child(2) { transition-delay: .06s; }
+.js-motion .eboard.is-in .officer:nth-child(3) { transition-delay: .12s; }
+.js-motion .eboard.is-in .officer:nth-child(4) { transition-delay: .18s; }
+.js-motion .eboard.is-in .officer:nth-child(5) { transition-delay: .24s; }
+.js-motion .eboard.is-in .officer:nth-child(6) { transition-delay: .30s; }
+.js-motion .eboard.is-in .officer:nth-child(7) { transition-delay: .36s; }
+.js-motion .eboard.is-in .officer:nth-child(8) { transition-delay: .42s; }
+
+/* Ticker only animates while on screen */
+.ticker.is-away .ticker__track { animation-play-state: paused; }
+
+/* Touch devices: no hover zooms (they stick after a tap) */
+@media (hover: none) {
+  .city:hover .city__img img, .event:hover .event__img img { transform: none; }
 }
 
 /* ---------- Reveal ---------- */

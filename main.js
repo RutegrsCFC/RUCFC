@@ -245,6 +245,20 @@
   };
 
   var root = document.documentElement;
+
+  /* Motion tier, decided once and shared by every animated part of the page. */
+  var REDUCE = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var MOTION = (function () {
+    if (REDUCE || !("IntersectionObserver" in window)) return { tier: "off", amp: 0, tau: 0 };
+    var coarse = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 760;
+    var nav_ = navigator, conn = nav_.connection || {};
+    var lowPower = (nav_.hardwareConcurrency && nav_.hardwareConcurrency <= 4) ||
+      (nav_.deviceMemory && nav_.deviceMemory <= 4) || conn.saveData === true;
+    if (coarse || lowPower) return { tier: "lite", amp: lowPower && coarse ? 0.4 : 0.55, tau: 0, lowPower: !!lowPower };
+    return { tier: "full", amp: 1, tau: 0.11, lowPower: false };
+  })();
+  root.setAttribute("data-motion", MOTION.tier);
+  root.style.setProperty("--amp", MOTION.amp);
   var nav = document.querySelector(".nav");
   var toggle = document.querySelector(".menu-toggle");
   var menu = document.getElementById("site-menu");
@@ -397,7 +411,7 @@
   }
   function itemHTML(sym) {
     var q = quotes[sym] || {};
-    var logo = q.lg ? '<img class="tk__logo" src="assets/tickers/' + sym + '.png" alt="" width="30" height="30" loading="lazy">' : "";
+    var logo = q.lg ? '<img class="tk__logo" src="assets/tickers/' + sym + '.png" alt="" width="30" height="30" loading="lazy" onerror="this.remove()">' : "";
     var code = q.k === "i" ? "" : '<span class="tk__sym">' + sym.replace(/\.(HK|SS|SZ)$/, "") + '</span>';
     return '<li class="tk' + (q.k === "i" ? " tk--idx" : "") + '" data-s="' + sym + '">' + logo +
       '<span class="tk__name"></span>' + code +
@@ -478,7 +492,7 @@
     var motionMQ = window.matchMedia("(min-height: 480px) and (prefers-reduced-motion: no-preference)");
     var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
     var smooth = function (a, b, v) { var t = clamp((v - a) / (b - a)); return t * t * t * (t * (t * 6 - 15) + 10); };
-    var ticking = false, shown = -1, target = 0, current = 0;
+    var ticking = false, shown = -1, target = 0, current = 0, lastDrawn = -1;
 
     /* Candlestick scene drawn on canvas and driven by p. */
     var canvas = chapter.querySelector(".chapter__chart");
@@ -526,7 +540,7 @@
       for (var gx = 20; gx < W; gx += 40) for (var gy = 20; gy < H; gy += 40) ctx.fillRect(gx, gy, 1, 1);
 
       ctx.save();
-      ctx.filter = "blur(" + (3 * (1 - smooth(0.08, 0.24, p))).toFixed(2) + "px)";   // focus pull on entry
+      if (!MOTION.lowPower) ctx.filter = "blur(" + (3 * (1 - smooth(0.08, 0.24, p))).toFixed(2) + "px)";   // focus pull on entry (skipped on low-power devices)
       // Trend lines (analysis) draw in during Research
       var tl = smooth(0.22, 0.4, p);
       if (tl > 0) {
@@ -579,7 +593,7 @@
     function apply(p) {
       chapter.style.setProperty("--p", p.toFixed(4));
       chapter.style.setProperty("--media", smooth(0, 0.16, p).toFixed(4));
-      draw(p);
+      if (Math.abs(p - lastDrawn) > 0.0005) { draw(p); lastDrawn = p; }
       var active = 0;
       for (var k = 0; k < panels.length; k++) {
         var enter = k === 0 ? 1 : smooth(EDGES[k], EDGES[k] + FADE, p);
@@ -608,11 +622,15 @@
       }
     }
     // Ease toward the scroll position so wheel steps glide instead of jumping.
-    function frame() {
-      current += (target - current) * 0.18;
-      if (Math.abs(target - current) < 0.0005) current = target;
+    var lastT = 0;
+    function frame(t) {
+      var dt = lastT ? Math.min(0.05, (t - lastT) / 1000) : 0.016;
+      lastT = t;
+      var tau = MOTION.tau;                              // 0 on touch / low-power: follow scroll exactly
+      current = tau > 0 ? current + (target - current) * (1 - Math.exp(-dt / tau)) : target;
+      if (Math.abs(target - current) < 0.0004) current = target;
       apply(current);
-      if (current !== target) requestAnimationFrame(frame); else ticking = false;
+      if (current !== target) requestAnimationFrame(frame); else { ticking = false; lastT = 0; }
     }
     function onScroll() {
       if (!chapter.classList.contains("is-motion")) return;
@@ -622,7 +640,7 @@
     function sync() {
       var on = motionMQ.matches;
       chapter.classList.toggle("is-motion", on);
-      size();
+      size(); lastDrawn = -1;
       if (on) { current = target = measure(); apply(current); return; }
       draw(1);
       for (var k = 0; k < panels.length; k++) {
@@ -739,7 +757,7 @@
   layoutNav();
 
   /* ---------- Reveal on scroll ---------- */
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = REDUCE;
   if (!reduce && "IntersectionObserver" in window) {
     root.classList.add("js-motion");
     var io = new IntersectionObserver(function (entries) {
@@ -753,6 +771,68 @@
     var items = document.querySelectorAll(".reveal");
     for (var r = 0; r < items.length; r++) io.observe(items[r]);
   }
+
+  /* ---------- Scroll motion ----------
+     One requestAnimationFrame loop drives every scroll effect. Each [data-fx]
+     element gets --fx: 0 as its top enters the bottom of the screen, 1 as its
+     bottom leaves the top. CSS turns --fx into translate / scale / opacity only,
+     so nothing triggers layout. --amp scales every movement:
+       full  (desktop, capable): amp 1, scroll smoothed with time-based damping
+       lite  (touch, narrow or low-power): amp .55, no smoothing (native momentum)
+       off   (prefers-reduced-motion): nothing moves, --amp stays 0 */
+
+  (function () {
+    if (MOTION.tier === "off") return;
+    var els = document.querySelectorAll("[data-fx]");
+    if (!els.length) return;
+    var active = [];
+    var smoothY = window.pageYOffset, lastT = 0, running = false;
+    var vis = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var i = active.indexOf(en.target);
+        en.target.classList.toggle("fx-on", en.isIntersecting);
+        if (en.isIntersecting && i < 0) active.push(en.target);
+        else if (!en.isIntersecting && i >= 0) active.splice(i, 1);
+      });
+      kick();
+    }, { rootMargin: "25% 0px 25% 0px" });
+    for (var i = 0; i < els.length; i++) vis.observe(els[i]);
+
+    function paint() {
+      var vh = window.innerHeight, lag = window.pageYOffset - smoothY;
+      for (var k = 0; k < active.length; k++) {
+        var r = active[k].getBoundingClientRect();
+        var top = r.top + lag;                               // where the element would be at the smoothed position
+        var p = active[k].getAttribute("data-fx") === "exit"
+          ? -top / r.height                                 // blocks that start on screen: 0 at rest, 1 once scrolled away
+          : (vh - top) / (vh + r.height);
+        active[k].style.setProperty("--fx", (p < 0 ? 0 : p > 1 ? 1 : p).toFixed(4));
+      }
+    }
+    function frame(t) {
+      var dt = lastT ? Math.min(0.05, (t - lastT) / 1000) : 0.016;
+      lastT = t;
+      var y = window.pageYOffset;
+      if (MOTION.tau > 0) {
+        smoothY += (y - smoothY) * (1 - Math.exp(-dt / MOTION.tau));   // same feel at 60 Hz and 120 Hz
+        if (Math.abs(y - smoothY) < 0.3) smoothY = y;
+      } else smoothY = y;
+      paint();
+      if (smoothY !== y) requestAnimationFrame(frame);
+      else { running = false; lastT = 0; }
+    }
+    function kick() { if (!running && active.length) { running = true; requestAnimationFrame(frame); } }
+    window.addEventListener("scroll", kick, { passive: true });
+    window.addEventListener("resize", kick, { passive: true });
+    kick();
+  })();
+
+  /* The ticker band only animates while it is on screen. */
+  (function () {
+    var band = document.getElementById("ticker");
+    if (!band || !("IntersectionObserver" in window)) return;
+    new IntersectionObserver(function (en) { band.classList.toggle("is-away", !en[0].isIntersecting); }).observe(band);
+  })();
 
   /* ---------- Opening shot ---------- */
   // <head> adds .intro on every load: the city starts zoomed in,
