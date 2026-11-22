@@ -27,6 +27,13 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html apply.html styles.css main.js _site/
+          # Stamp CSS/JS URLs with a content hash so browsers fetch the new file
+          # after a deploy instead of pairing new HTML with a cached old stylesheet.
+          css_v=$(sha256sum styles.css | cut -c1-10)
+          js_v=$(sha256sum main.js | cut -c1-10)
+          sed -i -e "s|href=\"styles.css\"|href=\"styles.css?v=$css_v\"|" \
+                 -e "s|src=\"main.js\"|src=\"main.js?v=$js_v\"|" _site/index.html _site/apply.html
+          grep -q "styles.css?v=$css_v" _site/index.html && grep -q "main.js?v=$js_v" _site/index.html
           mkdir -p _site/assets
           cp -r assets/photos assets/tickers assets/mark.png assets/logo-dark-600.png _site/assets/
 
