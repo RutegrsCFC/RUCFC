@@ -20,19 +20,18 @@
       "brand.sub": "Rutgers Chinese Finance Club",
       "nav.club": "The Club",
       "nav.programs": "Programs",
-      "nav.standard": "Our Standards",
+      "nav.standard": "Events",
       "nav.leadership": "Leadership",
       "nav.membership": "Membership",
 
       "hero.eyebrow": "Founding Cohort · Fall 2026",
       "hero.title": "Rigour. Conviction. Perspective.",
-      "hero.lead": "An undergraduate finance organization at Rutgers University, focused on global capital markets, technology-sector equities, and the Greater China economy.",
       "hero.cta": "Membership Enquiries",
-      "hero.cta2": "Our Standards",
+      "hero.cta2": "Recent Events",
       "hero.seal": "Rutgers University–New Brunswick",
-      "hero.t1": "Rigour.",
-      "hero.t2": "Conviction.",
-      "hero.t3": "Perspective.",
+      "hero.t1": "Bridging",
+      "hero.t2": "Rutgers",
+      "hero.t3": "and China.",
       "ticker.label": "Market prices",
       "ticker.live": "Markets",
       "club.statement": "Undergraduate finance, conducted to institutional standards.",
@@ -43,16 +42,23 @@
 
       "strip.v1": "Est. 2026",
       "strip.v2": "New Brunswick, NJ",
-      "strip.v3": "Capital Markets",
-      "strip.v4": "Technology",
-      "strip.v5": "Greater China",
+      "strip.v3": "Chinese Finance",
+      "strip.v4": "AI & Innovation",
+      "strip.v5": "Supply Chains",
 
       "club.title": "The Club",
       "club.p1": "The Rutgers Chinese Finance Club (RCFC) is an undergraduate finance organization at Rutgers University–New Brunswick. Its work centres on global capital markets, technology-sector equities, and the macroeconomics of Greater China.",
-      "club.p2": "RCFC was founded in 2026 by a Finance and Computer Science student with sell-side equity research experience covering the AI hardware supply chain. The club is organized around a single principle: undergraduate finance should be conducted to institutional standards, not studied in the abstract.",
+      "club.p2": "RCFC was founded in 2026 by Rutgers students. The club is organized around a single principle: undergraduate finance should be conducted to institutional standards, not studied in the abstract.",
       "club.quote": "A cross-border perspective on U.S. and Chinese capital markets.",
 
       "programs.title": "Programs",
+      "programs.w0": "Programs.",
+      "programs.w1": "Research.",
+      "programs.w2": "Credentials.",
+      "programs.w3": "Sessions.",
+      "programs.s1": "Research",
+      "programs.s2": "Credentials",
+      "programs.s3": "Sessions",
       "programs.t1": "Equity Research",
       "programs.d1": "Sector initiations and single-name investment theses built on sell-side methodology: industry mapping, supply-chain channel checks, financial modelling, and DCF and trading-comparables valuation.",
       "programs.t2": "Professional Credentialing",
@@ -60,43 +66,33 @@
       "programs.t3": "Closed-Door Sessions",
       "programs.d3": "Off-the-record discussions with industry practitioners, supported by a peer network held to the same professional standard.",
 
-      "standard.title": "Our Standards",
-      "standard.intro": "We apply the professional standards of the industry we intend to enter.",
-      "standard.t1": "Rigour",
-      "standard.d1": "Every view is evidence-based; every model is auditable line by line.",
-      "standard.t2": "Conviction",
-      "standard.d2": "We develop independent investment theses and are accountable for their outcomes.",
-      "standard.t3": "Contribution",
-      "standard.d3": "Each member contributes research and work product commensurate with what they draw from the club.",
-      "standard.note": "Founding members will define the club's research agenda, analytical standards, and governance from inception.",
 
       "leadership.title": "Leadership",
-      "leadership.role": "Founder & President",
-      "leadership.name": "Lucas (ZhiYao) Yan",
-      "leadership.bio": "Lucas is studying Finance and Computer Science at Rutgers University (Class of 2029). He previously worked as an Equity Research Intern on the TMT Hardware team at Minsheng Securities in Shanghai, covering the U.S.–China AI hardware supply chain. His work included channel checks, AIDC power-demand forecasting, server bill-of-materials (BOM) cost analysis, and contributions to sector reports and valuation models. He was selected for competitive talent programmes at leading global institutions, including Goldman Sachs' 2026 Possibilities Series and EY CHARGE 2026.",
-      "leadership.linkedin": "LinkedIn",
-      "leadership.cv": "Credentials",
-      "eboard.title": "Executive Board",
-      "eboard.vp": "Vice President",
+      "events.title": "Events",
+      "events.intro": "Recent gatherings of the founding cohort.",
+      "events.e1.t": "Kickoff Meeting",
+      "events.e1.d": "The first general meeting: introducing the club, the executive board, and the semester plan.",
+      "events.e2.t": "Alumni Insights",
+      "events.e2.d": "A Rutgers Mathematics and Statistics alumnus working in bank data shared his path into industry.",
+      "events.e3.t": "After the Talk",
+      "eboard.president": "President",
+      "eboard.president.name": "Lucas (ZhiYao) Yan",
+      "hero.lead": "Our mission is to connect the Rutgers community with Chinese finance, AI and innovation, supply chains, and exchange. Our vision is a lasting two-way bridge between Rutgers and China.",
+      "eboard.title": "The founding executive board.",
+      "eboard.vp": "External Vice President",
       "eboard.vp.name": "Harry (JianXia) Sun",
       "eboard.vp2": "Internal Vice President",
       "eboard.vp2.name": "Nihal Singh",
-      "eboard.cto": "Chief Technology Officer",
+      "eboard.cto": "Technology Lead",
       "eboard.cto.name": "Bowen Rui",
       "eboard.secretary": "Secretary",
       "eboard.secretary.name": "Ethan (SanMu) Zhang",
       "eboard.treasurer": "Treasurer",
       "eboard.treasurer.name": "JiaYin Wang",
-      "eboard.outreach": "Outreach & Media",
+      "eboard.outreach": "External Media & Outreach",
       "eboard.outreach.name": "Jacky Wang",
       "eboard.outreach2": "Internal Media & Outreach",
       "eboard.outreach2.name": "Shobhit Mishra",
-      "cv.o1": "Minsheng Securities",
-      "cv.r1": "Equity Research Intern, TMT Hardware · 2026",
-      "cv.o2": "Goldman Sachs",
-      "cv.r2": "2026 Possibilities Series · Selected",
-      "cv.o3": "EY",
-      "cv.r3": "CHARGE 2026 · Selected",
 
       "membership.title": "Membership Enquiries",
       "membership.line": "Students who share our standards are welcome to request further information.",
@@ -145,19 +141,18 @@
       "brand.sub": "罗格斯华人金融俱乐部",
       "nav.club": "关于我们",
       "nav.programs": "核心项目",
-      "nav.standard": "准则",
+      "nav.standard": "活动",
       "nav.leadership": "团队",
       "nav.membership": "入会",
 
       "hero.eyebrow": "创始届 · 2026 年秋季",
       "hero.title": "严谨。定见。视野。",
-      "hero.lead": "罗格斯大学本科金融组织，研究方向涵盖全球资本市场、科技行业股票与大中华区宏观经济。",
       "hero.cta": "入会咨询",
-      "hero.cta2": "我们的准则",
+      "hero.cta2": "近期活动",
       "hero.seal": "罗格斯大学新布朗斯维克校区",
-      "hero.t1": "严谨。",
-      "hero.t2": "定见。",
-      "hero.t3": "视野。",
+      "hero.t1": "连接",
+      "hero.t2": "罗格斯",
+      "hero.t3": "与中国。",
       "ticker.label": "股票行情",
       "ticker.live": "行情",
       "club.statement": "以机构标准，开展本科金融研究。",
@@ -168,16 +163,23 @@
 
       "strip.v1": "创立于 2026",
       "strip.v2": "新泽西州 新布朗斯维克",
-      "strip.v3": "资本市场",
-      "strip.v4": "科技行业",
-      "strip.v5": "大中华区",
+      "strip.v3": "中国金融",
+      "strip.v4": "AI 与创新",
+      "strip.v5": "供应链",
 
       "club.title": "关于我们",
       "club.p1": "罗格斯华人金融俱乐部（RCFC）是罗格斯大学新布朗斯维克校区的本科金融组织，研究方向涵盖全球资本市场、科技行业股票与大中华区宏观经济。",
-      "club.p2": "RCFC 创立于 2026 年。创始人主修金融与计算机科学，具备覆盖 AI 硬件产业链的卖方行业研究经历。俱乐部的立足点在于：本科阶段的金融训练应对标机构标准，而非停留于理论学习。",
+      "club.p2": "RCFC 由罗格斯学生于 2026 年创立。俱乐部的立足点在于：本科阶段的金融训练应对标机构标准，而非停留于理论学习。",
       "club.quote": "立足中美两地资本市场的跨境视角。",
 
       "programs.title": "核心项目",
+      "programs.w0": "项目。",
+      "programs.w1": "研究。",
+      "programs.w2": "认证。",
+      "programs.w3": "研讨。",
+      "programs.s1": "研究",
+      "programs.s2": "认证",
+      "programs.s3": "研讨",
       "programs.t1": "行业与个股研究",
       "programs.d1": "依托卖方研究方法论，撰写行业首次覆盖与个股投资逻辑报告：产业链梳理、渠道调研、财务建模，以及 DCF 与可比公司估值。",
       "programs.t2": "专业资质认证",
@@ -185,43 +187,33 @@
       "programs.t3": "闭门研讨",
       "programs.d3": "与业内从业者开展非公开闭门研讨，并依托以专业标准为共识的同侪网络。",
 
-      "standard.title": "我们的准则",
-      "standard.intro": "我们以目标行业的职业标准要求自身。",
-      "standard.t1": "严谨",
-      "standard.d1": "所有观点均有证据支撑，所有模型均可逐行审阅。",
-      "standard.t2": "定见",
-      "standard.d2": "独立构建投资逻辑，并对研判结果承担责任。",
-      "standard.t3": "贡献",
-      "standard.d3": "每位成员以相应的研究产出回馈俱乐部，贡献与所得相匹配。",
-      "standard.note": "创始届成员将自创立之初参与制定俱乐部的研究议程、分析标准与治理架构。",
 
       "leadership.title": "团队",
-      "leadership.role": "创始人兼社长",
-      "leadership.name": "Lucas Yan（ZhiYao）",
-      "leadership.bio": "就读于罗格斯大学，主修金融与计算机科学（2029 届）。曾任民生证券 TMT 硬件组行业研究实习生（上海），覆盖中美 AI 硬件产业链，参与渠道调研、AIDC 电力需求测算、服务器 BOM 成本拆分，以及行业研究报告与估值模型的撰写。先后入选高盛 2026 Possibilities Series 与安永 EY CHARGE 2026 等全球顶尖金融机构人才项目。",
-      "leadership.linkedin": "LinkedIn",
-      "leadership.cv": "履历",
-      "eboard.title": "执行委员会",
-      "eboard.vp": "副社长",
+      "events.title": "活动",
+      "events.intro": "创始届近期活动回顾。",
+      "events.e1.t": "Kickoff 全员大会",
+      "events.e1.d": "首次全员大会：介绍俱乐部、执行委员会与本学期规划。",
+      "events.e2.t": "校友分享会",
+      "events.e2.d": "一位数学与统计专业的罗格斯校友，分享他进入银行数据领域的职业路径。",
+      "events.e3.t": "分享会合影",
+      "eboard.president": "社长",
+      "eboard.president.name": "Lucas Yan（ZhiYao）",
+      "hero.lead": "我们的使命是连接罗格斯社区与中国金融、AI 与创新、供应链及学术交流；我们的愿景是成为罗格斯与中国之间长期的双向桥梁。",
+      "eboard.title": "创始届执行委员会。",
+      "eboard.vp": "外务副社长",
       "eboard.vp.name": "Harry Sun（JianXia）",
       "eboard.vp2": "内务副社长",
       "eboard.vp2.name": "Nihal Singh",
-      "eboard.cto": "首席技术官",
+      "eboard.cto": "技术负责人",
       "eboard.cto.name": "Bowen Rui",
       "eboard.secretary": "秘书长",
       "eboard.secretary.name": "Ethan Zhang（SanMu）",
       "eboard.treasurer": "财务",
       "eboard.treasurer.name": "JiaYin Wang",
-      "eboard.outreach": "外联与媒体",
+      "eboard.outreach": "外务媒体与外联",
       "eboard.outreach.name": "Jacky Wang",
       "eboard.outreach2": "内务媒体与外联",
       "eboard.outreach2.name": "Shobhit Mishra",
-      "cv.o1": "民生证券",
-      "cv.r1": "TMT 硬件行业研究实习生 · 2026",
-      "cv.o2": "高盛",
-      "cv.r2": "2026 Possibilities Series · 入选",
-      "cv.o3": "安永",
-      "cv.r3": "EY CHARGE 2026 · 入选",
 
       "membership.title": "入会咨询",
       "membership.line": "认同本会准则的同学，欢迎索取入会相关信息。",
@@ -395,11 +387,25 @@
     requestAnimationFrame(step);
   }
 
+  // Each item: logo (when a logo file exists), name, code, price, change, and an intraday sparkline.
+  function spark(sp, up) {
+    if (!sp || sp.length < 2) return "";
+    var w = 64, h = 22, lo = Math.min.apply(null, sp), hi = Math.max.apply(null, sp), span = hi - lo || 1;
+    var pts = sp.map(function (v, i) {
+      return (i / (sp.length - 1) * w).toFixed(1) + "," + (h - 2 - (v - lo) / span * (h - 4)).toFixed(1);
+    });
+    var cls = up ? "is-up" : "is-down";
+    return '<svg class="tk__spark ' + cls + '" viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" aria-hidden="true">' +
+      '<polygon class="tk__area" points="0,' + h + ' ' + pts.join(" ") + ' ' + w + ',' + h + '"/>' +
+      '<polyline points="' + pts.join(" ") + '"/></svg>';
+  }
   function itemHTML(sym) {
-    return '<li class="tk" data-s="' + sym + '">' +
-      '<img class="tk__logo" src="assets/tickers/' + sym + '.png" alt="" width="30" height="30" loading="lazy">' +
-      '<span class="tk__name"></span><span class="tk__sym">' + sym.replace(/\.(HK|SS)$/, "") + '</span>' +
-      '<span class="tk__px"></span><span class="tk__chg"></span></li>';
+    var q = quotes[sym] || {};
+    var logo = q.lg ? '<img class="tk__logo" src="assets/tickers/' + sym + '.png" alt="" width="30" height="30" loading="lazy">' : "";
+    var code = q.k === "i" ? "" : '<span class="tk__sym">' + sym.replace(/\.(HK|SS|SZ)$/, "") + '</span>';
+    return '<li class="tk' + (q.k === "i" ? " tk--idx" : "") + '" data-s="' + sym + '">' + logo +
+      '<span class="tk__name"></span>' + code +
+      '<span class="tk__px"></span><span class="tk__chg"></span>' + spark(q.sp, q.price >= q.prev) + '</li>';
   }
   function renderTickerNames() {
     if (!track) return;
@@ -434,7 +440,7 @@
         list.forEach(function (q) {
           var old = quotes[q.s];
           if (!old) {
-            quotes[q.s] = { price: q.price, prev: q.prev, cur: q.cur, en: q.en, zh: q.zh, shown: q.price };
+            quotes[q.s] = { price: q.price, prev: q.prev, cur: q.cur, en: q.en, zh: q.zh, k: q.k, lg: q.lg, sp: q.sp, shown: q.price };
             return;
           }
           var from = old.shown;
@@ -457,6 +463,191 @@
   } else if (ticker) {
     ticker.hidden = true;
   }
+
+  /* ---------- Programs scroll chapter ----------
+     The section pins while the visitor scrolls through it. Progress p (0-1)
+     cross-fades four panels (intro + three programs), drifts the watermark
+     word, opens the photo, and fills the progress line. Without motion
+     (very short windows or reduced-motion) it is a plain stacked list. */
+  (function () {
+    var chapter = document.querySelector(".chapter");
+    if (!chapter) return;
+    var panels = chapter.querySelectorAll(".chapter__panel");
+    var words = chapter.querySelectorAll(".chapter__word");
+    var steps = chapter.querySelectorAll("[data-step]");
+    var now = chapter.querySelector(".chapter__now");
+    var NUM = ["—", "I", "II", "III"];
+    var EDGES = [0, 0.2, 0.46, 0.72, 1];          // panel k owns [EDGES[k], EDGES[k+1]]
+    var FADE = 0.05;
+    var motionMQ = window.matchMedia("(min-height: 480px) and (prefers-reduced-motion: no-preference)");
+    var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+    var smooth = function (a, b, v) { var t = clamp((v - a) / (b - a)); return t * t * t * (t * (t * 6 - 15) + 10); };
+    var ticking = false, shown = -1, target = 0, current = 0;
+
+    /* Candlestick scene drawn on canvas and driven by p. */
+    var canvas = chapter.querySelector(".chapter__chart");
+    var ctx = canvas && canvas.getContext("2d");
+    var bars = (function () {
+      // Seeded walk shaped like a rally, a sharp break, then a grinding recovery.
+      var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+      var plan = [[18, 0.9], [10, -0.6], [6, -3.2], [10, -0.2], [16, 0.55], [12, 0.15], [18, 0.6]];
+      var out = [], px = 100;
+      plan.forEach(function (seg) {
+        for (var i = 0; i < seg[0]; i++) {
+          var o = px, c = o + seg[1] + (rnd() - 0.5) * 2.6;
+          var h = Math.max(o, c) + rnd() * 1.4, l = Math.min(o, c) - rnd() * 1.4;
+          out.push([o, h, l, c]); px = c;
+        }
+      });
+      return out;
+    })();
+    function ma(i, n) { var s = 0, k = 0; for (var j = Math.max(0, i - n + 1); j <= i; j++) { s += bars[j][3]; k++; } return s / k; }
+    function size() {
+      if (!canvas) return;
+      var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(r.width * d); canvas.height = Math.round(r.height * d);
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+    }
+    function draw(p) {
+      if (!ctx || !canvas.width) return;
+      var d = Math.min(window.devicePixelRatio || 1, 2), W = canvas.width / d, H = canvas.height / d;
+      var n = bars.length;
+      var reveal = Math.max(8, Math.round(n * (0.32 + 0.68 * smooth(0.12, 0.62, p))));
+      var zoom = 1.25 - 0.25 * smooth(0.66, 0.98, p);            // camera pulls back in the last chapter
+      var visible = Math.min(n, Math.round(n / zoom));
+      var start = Math.max(0, reveal - Math.round(visible * 0.82));
+      var slice = bars.slice(start, reveal);
+      var lo = Infinity, hi = -Infinity;
+      slice.forEach(function (b) { lo = Math.min(lo, b[2]); hi = Math.max(hi, b[1]); });
+      var pad = (hi - lo) * 0.18; lo -= pad; hi += pad;
+      var step = W / visible, bw = Math.max(2, step * 0.56);
+      var y = function (v) { return H - (v - lo) / (hi - lo) * H; };
+      var x = function (i) { return (i - start + 0.5) * step; };
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = "#05080d"; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = "rgba(255,255,255,.05)";
+      for (var gx = 20; gx < W; gx += 40) for (var gy = 20; gy < H; gy += 40) ctx.fillRect(gx, gy, 1, 1);
+
+      ctx.save();
+      ctx.filter = "blur(" + (3 * (1 - smooth(0.08, 0.24, p))).toFixed(2) + "px)";   // focus pull on entry
+      // Trend lines (analysis) draw in during Research
+      var tl = smooth(0.22, 0.4, p);
+      if (tl > 0) {
+        ctx.setLineDash([2, 4]); ctx.lineWidth = 1;
+        [[0.38, -0.06, "rgba(80,140,255,.75)"], [0.58, -0.1, "rgba(61,190,139,.6)"]].forEach(function (t) {
+          ctx.strokeStyle = t[2]; ctx.beginPath();
+          ctx.moveTo(0, H * t[0]); ctx.lineTo(W * tl, H * (t[0] + t[1] * tl)); ctx.stroke();
+        });
+        ctx.setLineDash([]);
+      }
+      slice.forEach(function (b, k) {
+        var i = start + k, up = b[3] >= b[0];
+        var fade = Math.min(1, (reveal - i) / 3);
+        ctx.globalAlpha = 0.25 + 0.75 * fade;
+        ctx.strokeStyle = ctx.fillStyle = up ? "#3DBE8B" : "#FF5757";
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x(i), y(b[1])); ctx.lineTo(x(i), y(b[2])); ctx.stroke();
+        var top = y(Math.max(b[0], b[3])), h = Math.max(1, Math.abs(y(b[0]) - y(b[3])));
+        ctx.fillRect(x(i) - bw / 2, top, bw, h);
+      });
+      ctx.globalAlpha = 1;
+      // Moving average and price tag arrive with Credentials
+      var mv = smooth(0.48, 0.62, p);
+      if (mv > 0) {
+        ctx.strokeStyle = "rgba(255,255,255," + (0.55 * mv).toFixed(3) + ")"; ctx.lineWidth = 1.4; ctx.beginPath();
+        var upto = start + Math.round(slice.length * mv);
+        for (var i = start; i < upto; i++) { var py = y(ma(i, 9)); if (i === start) ctx.moveTo(x(i), py); else ctx.lineTo(x(i), py); }
+        ctx.stroke();
+        var last = bars[reveal - 1][3], ly = y(last);
+        ctx.globalAlpha = mv;
+        ctx.setLineDash([3, 3]); ctx.strokeStyle = "rgba(255,255,255,.3)"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(0, ly); ctx.lineTo(W, ly); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = "#FF5757"; ctx.fillRect(W - 58, ly - 10, 58, 20);
+        ctx.fillStyle = "#fff"; ctx.font = "600 11px Inter, system-ui, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText(last.toFixed(2), W - 29, ly + 0.5);
+        ctx.globalAlpha = 1;
+      }
+      ctx.restore();
+      // Depth of field toward the right edge, like a lens focused on the left
+      var g = ctx.createLinearGradient(W * 0.6, 0, W, 0);
+      g.addColorStop(0, "rgba(5,8,13,0)"); g.addColorStop(1, "rgba(5,8,13,.55)");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    }
+
+    function measure() {
+      var r = chapter.getBoundingClientRect();
+      var total = chapter.offsetHeight - window.innerHeight;
+      return total > 0 ? clamp(-r.top / total) : 0;
+    }
+    function apply(p) {
+      chapter.style.setProperty("--p", p.toFixed(4));
+      chapter.style.setProperty("--media", smooth(0, 0.16, p).toFixed(4));
+      draw(p);
+      var active = 0;
+      for (var k = 0; k < panels.length; k++) {
+        var enter = k === 0 ? 1 : smooth(EDGES[k], EDGES[k] + FADE, p);
+        var exit = k === panels.length - 1 ? 0 : smooth(EDGES[k + 1] - FADE * 0.8, EDGES[k + 1], p);
+        var vis = enter * (1 - exit);
+        if (vis > 0.5) active = k;
+        var kids = panels[k].children;
+        for (var c = 0; c < kids.length; c++) {
+          var e = k === 0 ? 1 : smooth(EDGES[k] + c * 0.012, EDGES[k] + FADE + c * 0.012, p);
+          kids[c].style.opacity = (e * (1 - exit)).toFixed(4);
+          kids[c].style.transform = "translate3d(0," + ((1 - e) * 26 - exit * (14 + c * 4)).toFixed(2) + "px,0)";
+        }
+        panels[k].setAttribute("aria-hidden", vis < 0.5 ? "true" : "false");
+        if (words[k]) {
+          words[k].style.opacity = (vis * 0.9).toFixed(4);
+          words[k].style.transform = "translate3d(" + (-(p * 60) + (1 - enter) * 40).toFixed(2) + "px,0,0)";
+        }
+      }
+      if (active !== shown) {
+        shown = active;
+        now.textContent = NUM[active];
+        for (var s = 0; s < steps.length; s++) {
+          if (+steps[s].getAttribute("data-step") === active) steps[s].setAttribute("aria-current", "step");
+          else steps[s].removeAttribute("aria-current");
+        }
+      }
+    }
+    // Ease toward the scroll position so wheel steps glide instead of jumping.
+    function frame() {
+      current += (target - current) * 0.18;
+      if (Math.abs(target - current) < 0.0005) current = target;
+      apply(current);
+      if (current !== target) requestAnimationFrame(frame); else ticking = false;
+    }
+    function onScroll() {
+      if (!chapter.classList.contains("is-motion")) return;
+      target = measure();
+      if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+    }
+    function sync() {
+      var on = motionMQ.matches;
+      chapter.classList.toggle("is-motion", on);
+      size();
+      if (on) { current = target = measure(); apply(current); return; }
+      draw(1);
+      for (var k = 0; k < panels.length; k++) {
+        panels[k].removeAttribute("aria-hidden");
+        for (var c = 0; c < panels[k].children.length; c++) { panels[k].children[c].style.opacity = ""; panels[k].children[c].style.transform = ""; }
+      }
+    }
+    for (var s = 0; s < steps.length; s++) {
+      steps[s].addEventListener("click", function () {
+        var k = +this.getAttribute("data-step");
+        var total = chapter.offsetHeight - window.innerHeight;
+        var mid = (EDGES[k] + EDGES[k + 1]) / 2;
+        var top = chapter.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: top + mid * total, behavior: "smooth" });
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", sync, { passive: true });
+    if (motionMQ.addEventListener) motionMQ.addEventListener("change", sync);
+    sync();
+  })();
 
   /* ---------- Mobile menu ---------- */
   function isOpen() {
