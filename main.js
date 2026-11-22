@@ -146,7 +146,7 @@
       "nav.club": "关于我们",
       "nav.programs": "核心项目",
       "nav.standard": "准则",
-      "nav.leadership": "领导团队",
+      "nav.leadership": "团队",
       "nav.membership": "入会",
 
       "hero.eyebrow": "创始届 · 2026 年秋季",
@@ -195,7 +195,7 @@
       "standard.d3": "每位成员以相应的研究产出回馈俱乐部，贡献与所得相匹配。",
       "standard.note": "创始届成员将自创立之初参与制定俱乐部的研究议程、分析标准与治理架构。",
 
-      "leadership.title": "领导团队",
+      "leadership.title": "团队",
       "leadership.role": "创始人兼社长",
       "leadership.name": "Lucas Yan（ZhiYao）",
       "leadership.bio": "就读于罗格斯大学，主修金融与计算机科学（2029 届）。2026 年夏季任民生证券 TMT 硬件组行业研究实习生（上海），覆盖中美 AI 硬件产业链，参与渠道调研、AIDC 电力需求测算、服务器 BOM 成本拆分，以及行业研究报告与估值模型的撰写。入选高盛 2026 Possibilities Series 及安永 EY CHARGE 2026 项目。",
