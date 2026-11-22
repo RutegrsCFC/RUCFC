@@ -34,21 +34,16 @@
       "hero.t3": "and China.",
       "ticker.label": "Market prices",
       "ticker.live": "Markets",
-      "club.statement": "Undergraduate finance, conducted to institutional standards.",
+      "club.statement": "A China lens on global finance.",
       "club.capNY": "New York",
       "club.capSH": "Shanghai",
       "programs.kicker": "Three practice areas. One standard.",
       "footer.data": "Market data may be delayed. For reference only.",
 
-      "strip.v1": "Est. 2026",
-      "strip.v2": "New Brunswick, NJ",
-      "strip.v3": "Chinese Finance",
-      "strip.v4": "AI & Innovation",
-      "strip.v5": "Supply Chains",
 
       "club.title": "The Club",
-      "club.p1": "The Rutgers Chinese Finance Club (RCFC) is an undergraduate finance organization at Rutgers University–New Brunswick. Its work centres on global capital markets, technology-sector equities, and the macroeconomics of Greater China.",
-      "club.p2": "RCFC was founded in 2026 by Rutgers students. The club is organized around a single principle: undergraduate finance should be conducted to institutional standards, not studied in the abstract.",
+      "club.p1": "The Rutgers Chinese Finance Club (RCFC) is a student organization at Rutgers University–New Brunswick. We bridge Western finance and Chinese markets, giving Rutgers students practical insight into China's financial systems and tech sector.",
+      "club.p2": "RCFC is bilingual and open to every Rutgers student. No finance background is required.",
       "club.quote": "A cross-border perspective on U.S. and Chinese capital markets.",
 
       "programs.title": "Programs",
@@ -77,7 +72,7 @@
       "events.e3.t": "After the Talk",
       "eboard.president": "President",
       "eboard.president.name": "Lucas (ZhiYao) Yan",
-      "hero.lead": "Our mission is to connect the Rutgers community with Chinese finance, AI and innovation, supply chains, and exchange. Our vision is a lasting two-way bridge between Rutgers and China.",
+      "hero.lead": "Our mission is to give Rutgers students practical insight into China's financial systems and tech sector. Our vision is to prepare them for global finance through cross-border education and practice.",
       "eboard.title": "The founding executive board.",
       "eboard.vp": "External Vice President",
       "eboard.vp.name": "Harry (JianXia) Sun",
@@ -155,28 +150,19 @@
       "hero.t3": "与中国。",
       "ticker.label": "股票行情",
       "ticker.live": "行情",
-      "club.statement": "以机构标准，开展本科金融研究。",
+      "club.statement": "用中国视角，看全球金融。",
       "club.capNY": "纽约",
       "club.capSH": "上海",
-      "programs.kicker": "三大业务方向，统一专业标准。",
+      "programs.kicker": "我们专注三件事。",
       "footer.data": "行情数据或有延迟，仅供参考。",
 
-      "strip.v1": "创立于 2026",
-      "strip.v2": "新泽西州 新布朗斯维克",
-      "strip.v3": "中国金融",
-      "strip.v4": "AI 与创新",
-      "strip.v5": "供应链",
 
       "club.title": "关于我们",
-      "club.p1": "罗格斯华人金融俱乐部（RCFC）是罗格斯大学新布朗斯维克校区的本科金融组织，研究方向涵盖全球资本市场、科技行业股票与大中华区宏观经济。",
-      "club.p2": "RCFC 由罗格斯学生于 2026 年创立。俱乐部的立足点在于：本科阶段的金融训练应对标机构标准，而非停留于理论学习。",
+      "club.p1": "罗格斯华人金融俱乐部（RCFC）是罗格斯大学新布朗斯维克校区的学生组织，致力于连接西方金融与中国市场，帮助同学切实了解中国的金融体系与科技产业。",
+      "club.p2": "俱乐部中英双语，面向全体罗格斯学生开放，无需金融背景。",
       "club.quote": "立足中美两地资本市场的跨境视角。",
 
       "programs.title": "核心项目",
-      "programs.w0": "项目。",
-      "programs.w1": "研究。",
-      "programs.w2": "认证。",
-      "programs.w3": "研讨。",
       "programs.s1": "研究",
       "programs.s2": "认证",
       "programs.s3": "研讨",
@@ -198,7 +184,7 @@
       "events.e3.t": "分享会合影",
       "eboard.president": "社长",
       "eboard.president.name": "Lucas Yan（ZhiYao）",
-      "hero.lead": "我们的使命是连接罗格斯社区与中国金融、AI 与创新、供应链及学术交流；我们的愿景是成为罗格斯与中国之间长期的双向桥梁。",
+      "hero.lead": "我们的使命是帮助罗格斯学生切实了解中国的金融体系与科技产业；我们的愿景是通过跨境教育与实践，助力同学走向全球金融职业。",
       "eboard.title": "创始届执行委员会。",
       "eboard.vp": "外务副社长",
       "eboard.vp.name": "Harry Sun（JianXia）",
@@ -249,6 +235,20 @@
   };
 
   var root = document.documentElement;
+
+  /* Motion tier, decided once and shared by every animated part of the page. */
+  var REDUCE = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var MOTION = (function () {
+    if (REDUCE || !("IntersectionObserver" in window)) return { tier: "off", amp: 0, tau: 0 };
+    var coarse = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 760;
+    var nav_ = navigator, conn = nav_.connection || {};
+    var lowPower = (nav_.hardwareConcurrency && nav_.hardwareConcurrency <= 4) ||
+      (nav_.deviceMemory && nav_.deviceMemory <= 4) || conn.saveData === true;
+    if (coarse || lowPower) return { tier: "lite", amp: lowPower && coarse ? 0.4 : 0.55, tau: 0, lowPower: !!lowPower };
+    return { tier: "full", amp: 1, tau: 0.11, lowPower: false };
+  })();
+  root.setAttribute("data-motion", MOTION.tier);
+  root.style.setProperty("--amp", MOTION.amp);
   var nav = document.querySelector(".nav");
   var toggle = document.querySelector(".menu-toggle");
   var menu = document.getElementById("site-menu");
@@ -401,7 +401,7 @@
   }
   function itemHTML(sym) {
     var q = quotes[sym] || {};
-    var logo = q.lg ? '<img class="tk__logo" src="assets/tickers/' + sym + '.png" alt="" width="30" height="30" loading="lazy">' : "";
+    var logo = q.lg ? '<img class="tk__logo" src="assets/tickers/' + sym + '.png" alt="" width="30" height="30" loading="lazy" onerror="this.remove()">' : "";
     var code = q.k === "i" ? "" : '<span class="tk__sym">' + sym.replace(/\.(HK|SS|SZ)$/, "") + '</span>';
     return '<li class="tk' + (q.k === "i" ? " tk--idx" : "") + '" data-s="' + sym + '">' + logo +
       '<span class="tk__name"></span>' + code +
@@ -482,7 +482,7 @@
     var motionMQ = window.matchMedia("(min-height: 480px) and (prefers-reduced-motion: no-preference)");
     var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
     var smooth = function (a, b, v) { var t = clamp((v - a) / (b - a)); return t * t * t * (t * (t * 6 - 15) + 10); };
-    var ticking = false, shown = -1, target = 0, current = 0;
+    var ticking = false, shown = -1, target = 0, current = 0, lastDrawn = -1;
 
     /* Candlestick scene drawn on canvas and driven by p. */
     var canvas = chapter.querySelector(".chapter__chart");
@@ -530,7 +530,7 @@
       for (var gx = 20; gx < W; gx += 40) for (var gy = 20; gy < H; gy += 40) ctx.fillRect(gx, gy, 1, 1);
 
       ctx.save();
-      ctx.filter = "blur(" + (3 * (1 - smooth(0.08, 0.24, p))).toFixed(2) + "px)";   // focus pull on entry
+      if (!MOTION.lowPower) ctx.filter = "blur(" + (3 * (1 - smooth(0.08, 0.24, p))).toFixed(2) + "px)";   // focus pull on entry (skipped on low-power devices)
       // Trend lines (analysis) draw in during Research
       var tl = smooth(0.22, 0.4, p);
       if (tl > 0) {
@@ -583,7 +583,7 @@
     function apply(p) {
       chapter.style.setProperty("--p", p.toFixed(4));
       chapter.style.setProperty("--media", smooth(0, 0.16, p).toFixed(4));
-      draw(p);
+      if (Math.abs(p - lastDrawn) > 0.0005) { draw(p); lastDrawn = p; }
       var active = 0;
       for (var k = 0; k < panels.length; k++) {
         var enter = k === 0 ? 1 : smooth(EDGES[k], EDGES[k] + FADE, p);
@@ -612,11 +612,15 @@
       }
     }
     // Ease toward the scroll position so wheel steps glide instead of jumping.
-    function frame() {
-      current += (target - current) * 0.18;
-      if (Math.abs(target - current) < 0.0005) current = target;
+    var lastT = 0;
+    function frame(t) {
+      var dt = lastT ? Math.min(0.05, (t - lastT) / 1000) : 0.016;
+      lastT = t;
+      var tau = MOTION.tau;                              // 0 on touch / low-power: follow scroll exactly
+      current = tau > 0 ? current + (target - current) * (1 - Math.exp(-dt / tau)) : target;
+      if (Math.abs(target - current) < 0.0004) current = target;
       apply(current);
-      if (current !== target) requestAnimationFrame(frame); else ticking = false;
+      if (current !== target) requestAnimationFrame(frame); else { ticking = false; lastT = 0; }
     }
     function onScroll() {
       if (!chapter.classList.contains("is-motion")) return;
@@ -626,7 +630,7 @@
     function sync() {
       var on = motionMQ.matches;
       chapter.classList.toggle("is-motion", on);
-      size();
+      size(); lastDrawn = -1;
       if (on) { current = target = measure(); apply(current); return; }
       draw(1);
       for (var k = 0; k < panels.length; k++) {
@@ -743,7 +747,7 @@
   layoutNav();
 
   /* ---------- Reveal on scroll ---------- */
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = REDUCE;
   if (!reduce && "IntersectionObserver" in window) {
     root.classList.add("js-motion");
     var io = new IntersectionObserver(function (entries) {
@@ -757,6 +761,68 @@
     var items = document.querySelectorAll(".reveal");
     for (var r = 0; r < items.length; r++) io.observe(items[r]);
   }
+
+  /* ---------- Scroll motion ----------
+     One requestAnimationFrame loop drives every scroll effect. Each [data-fx]
+     element gets --fx: 0 as its top enters the bottom of the screen, 1 as its
+     bottom leaves the top. CSS turns --fx into translate / scale / opacity only,
+     so nothing triggers layout. --amp scales every movement:
+       full  (desktop, capable): amp 1, scroll smoothed with time-based damping
+       lite  (touch, narrow or low-power): amp .55, no smoothing (native momentum)
+       off   (prefers-reduced-motion): nothing moves, --amp stays 0 */
+
+  (function () {
+    if (MOTION.tier === "off") return;
+    var els = document.querySelectorAll("[data-fx]");
+    if (!els.length) return;
+    var active = [];
+    var smoothY = window.pageYOffset, lastT = 0, running = false;
+    var vis = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var i = active.indexOf(en.target);
+        en.target.classList.toggle("fx-on", en.isIntersecting);
+        if (en.isIntersecting && i < 0) active.push(en.target);
+        else if (!en.isIntersecting && i >= 0) active.splice(i, 1);
+      });
+      kick();
+    }, { rootMargin: "25% 0px 25% 0px" });
+    for (var i = 0; i < els.length; i++) vis.observe(els[i]);
+
+    function paint() {
+      var vh = window.innerHeight, lag = window.pageYOffset - smoothY;
+      for (var k = 0; k < active.length; k++) {
+        var r = active[k].getBoundingClientRect();
+        var top = r.top + lag;                               // where the element would be at the smoothed position
+        var p = active[k].getAttribute("data-fx") === "exit"
+          ? -top / r.height                                 // blocks that start on screen: 0 at rest, 1 once scrolled away
+          : (vh - top) / (vh + r.height);
+        active[k].style.setProperty("--fx", (p < 0 ? 0 : p > 1 ? 1 : p).toFixed(4));
+      }
+    }
+    function frame(t) {
+      var dt = lastT ? Math.min(0.05, (t - lastT) / 1000) : 0.016;
+      lastT = t;
+      var y = window.pageYOffset;
+      if (MOTION.tau > 0) {
+        smoothY += (y - smoothY) * (1 - Math.exp(-dt / MOTION.tau));   // same feel at 60 Hz and 120 Hz
+        if (Math.abs(y - smoothY) < 0.3) smoothY = y;
+      } else smoothY = y;
+      paint();
+      if (smoothY !== y) requestAnimationFrame(frame);
+      else { running = false; lastT = 0; }
+    }
+    function kick() { if (!running && active.length) { running = true; requestAnimationFrame(frame); } }
+    window.addEventListener("scroll", kick, { passive: true });
+    window.addEventListener("resize", kick, { passive: true });
+    kick();
+  })();
+
+  /* The ticker band only animates while it is on screen. */
+  (function () {
+    var band = document.getElementById("ticker");
+    if (!band || !("IntersectionObserver" in window)) return;
+    new IntersectionObserver(function (en) { band.classList.toggle("is-away", !en[0].isIntersecting); }).observe(band);
+  })();
 
   /* ---------- Opening shot ---------- */
   // <head> adds .intro on every load: the city starts zoomed in,
