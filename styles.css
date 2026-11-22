@@ -496,12 +496,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .eboard__grid {
   list-style: none; margin: 20px 0 0; padding: 0;
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--ink);
 }
 .officer { padding: 24px 24px 28px 0; border-bottom: 1px solid var(--line); }
 .officer + .officer { padding-left: 24px; border-left: 1px solid var(--line); }
-.officer:nth-child(3n+1) { padding-left: 0; border-left: 0; }
+.officer:nth-child(4n+1) { padding-left: 0; border-left: 0; }
 .officer__role {
   font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--coral);
 }
