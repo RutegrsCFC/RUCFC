@@ -158,7 +158,7 @@
       "club.statement": "以机构标准，开展本科金融研究。",
       "club.capNY": "纽约",
       "club.capSH": "上海",
-      "programs.kicker": "三大业务方向，统一专业标准。",
+      "programs.kicker": "我们专注三件事。",
       "footer.data": "行情数据或有延迟，仅供参考。",
 
       "strip.v1": "创立于 2026",
@@ -173,10 +173,6 @@
       "club.quote": "立足中美两地资本市场的跨境视角。",
 
       "programs.title": "核心项目",
-      "programs.w0": "项目。",
-      "programs.w1": "研究。",
-      "programs.w2": "认证。",
-      "programs.w3": "研讨。",
       "programs.s1": "研究",
       "programs.s2": "认证",
       "programs.s3": "研讨",
