@@ -489,6 +489,39 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .cv__row dt { font-weight: 600; }
 .cv__row dd { color: var(--ink-2); }
 
+/* Rest of the executive board: deliberately quieter than the president block above */
+.eboard { margin-top: clamp(72px, 9vw, 120px); }
+.eboard__title {
+  font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+}
+.eboard__grid {
+  list-style: none; margin: 20px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+}
+.officer { padding: 24px 24px 28px 0; border-bottom: 1px solid var(--line); }
+.officer + .officer { padding-left: 24px; border-left: 1px solid var(--line); }
+.officer:nth-child(4n+1) { padding-left: 0; border-left: 0; }
+.officer__role {
+  font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--coral);
+}
+.officer__name {
+  margin-top: 10px; font-family: var(--display); font-weight: 600;
+  font-size: 20px; line-height: 1.2; letter-spacing: -0.015em;
+}
+.officer__name a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color .2s; }
+.officer__name a:hover { border-bottom-color: var(--coral); }
+@media (max-width: 1080px) {
+  .eboard__grid { grid-template-columns: repeat(2, 1fr); }
+  .officer:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--line); }
+  .officer:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 760px) {
+  .officer, .officer + .officer { padding: 18px 12px 20px 0; }
+  .officer:nth-child(even) { padding-left: 16px; }
+  .officer__name { font-size: 17px; }
+}
+
 /* 05 Membership */
 .membership {
   position: relative; overflow: hidden; color: var(--white); background: var(--navy);
