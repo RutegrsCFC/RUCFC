@@ -245,7 +245,7 @@
     var lowPower = (nav_.hardwareConcurrency && nav_.hardwareConcurrency <= 4) ||
       (nav_.deviceMemory && nav_.deviceMemory <= 4) || conn.saveData === true;
     if (coarse || lowPower) return { tier: "lite", amp: lowPower && coarse ? 0.4 : 0.55, tau: 0, lowPower: !!lowPower };
-    return { tier: "full", amp: 1, tau: 0.11, lowPower: false };
+    return { tier: "full", amp: 0.55, tau: 0.11, lowPower: false };
   })();
   root.setAttribute("data-motion", MOTION.tier);
   root.style.setProperty("--amp", MOTION.amp);
@@ -502,11 +502,20 @@
       return out;
     })();
     function ma(i, n) { var s = 0, k = 0; for (var j = Math.max(0, i - n + 1); j <= i; j++) { s += bars[j][3]; k++; } return s / k; }
+    var bgCache = null;
     function size() {
       if (!canvas) return;
       var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(r.width * d); canvas.height = Math.round(r.height * d);
       ctx.setTransform(d, 0, 0, d, 0, 0);
+      // Static backdrop (fill + dot grid) rendered once instead of ~800 rects per frame
+      bgCache = document.createElement("canvas");
+      bgCache.width = canvas.width; bgCache.height = canvas.height;
+      var b = bgCache.getContext("2d");
+      b.setTransform(d, 0, 0, d, 0, 0);
+      b.fillStyle = "#05080d"; b.fillRect(0, 0, r.width, r.height);
+      b.fillStyle = "rgba(255,255,255,.05)";
+      for (var gx = 20; gx < r.width; gx += 40) for (var gy = 20; gy < r.height; gy += 40) b.fillRect(gx, gy, 1, 1);
     }
     function draw(p) {
       if (!ctx || !canvas.width) return;
@@ -525,12 +534,16 @@
       var x = function (i) { return (i - start + 0.5) * step; };
 
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = "#05080d"; ctx.fillRect(0, 0, W, H);
-      ctx.fillStyle = "rgba(255,255,255,.05)";
-      for (var gx = 20; gx < W; gx += 40) for (var gy = 20; gy < H; gy += 40) ctx.fillRect(gx, gy, 1, 1);
+      if (bgCache) ctx.drawImage(bgCache, 0, 0, W, H);
+      else { ctx.fillStyle = "#05080d"; ctx.fillRect(0, 0, W, H); }
 
       ctx.save();
-      if (!MOTION.lowPower) ctx.filter = "blur(" + (3 * (1 - smooth(0.08, 0.24, p))).toFixed(2) + "px)";   // focus pull on entry (skipped on low-power devices)
+      // Focus pull on entry: CSS filter on the element composites on the GPU,
+      // unlike ctx.filter which software-blurs every primitive per frame.
+      if (!MOTION.lowPower) {
+        var blur = 3 * (1 - smooth(0.08, 0.24, p));
+        canvas.style.filter = blur > 0.05 ? "blur(" + blur.toFixed(2) + "px)" : "";
+      }
       // Trend lines (analysis) draw in during Research
       var tl = smooth(0.22, 0.4, p);
       if (tl > 0) {
