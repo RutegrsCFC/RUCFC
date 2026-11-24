@@ -825,6 +825,9 @@ legend.field__label { margin-bottom: 10px; } /* a legend sits outside the fields
   .footer__base { flex-direction: column; }
 }
 
+/* Touch / low-power devices skip the idle hero zoom along with the opening shot */
+[data-motion="lite"] .hero__media img { animation: none; transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero__media img { animation: none; transform: none; }

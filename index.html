@@ -12,7 +12,10 @@
       var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
       // Hide reveal targets before first paint so they don't flash and then fade out.
       if (!still && "IntersectionObserver" in window) document.documentElement.classList.add("js-motion");
-      if (!still) {
+      // Phones skip the opening shot: animating a full-screen image on load is the
+      // heaviest part of first paint on low-end devices.
+      var coarse = matchMedia("(pointer: coarse)").matches || innerWidth < 760;
+      if (!still && !coarse) {
         document.documentElement.classList.add("intro");
         if ("scrollRestoration" in history) history.scrollRestoration = "manual"; // a reload starts at the opening shot
       }
@@ -22,7 +25,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/photos/hero-manhattan.jpg">
+  <link rel="preload" as="image" href="assets/photos/hero-manhattan.webp"
+    imagesrcset="assets/photos/hero-manhattan-800.webp 800w, assets/photos/hero-manhattan-1280.webp 1280w, assets/photos/hero-manhattan.webp 1920w"
+    imagesizes="100vw">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -65,7 +70,9 @@
     <!-- ============ HERO ============ -->
     <section class="hero" data-fx="exit">
       <div class="hero__media" aria-hidden="true">
-        <img src="assets/photos/hero-manhattan.jpg" alt="">
+        <img src="assets/photos/hero-manhattan.webp"
+          srcset="assets/photos/hero-manhattan-800.webp 800w, assets/photos/hero-manhattan-1280.webp 1280w, assets/photos/hero-manhattan.webp 1920w"
+          sizes="100vw" fetchpriority="high" alt="">
       </div>
       <div class="hero__body wrap">
         <p class="eyebrow reveal"><span class="eyebrow__dash"></span><span data-i18n="hero.eyebrow">Founding Cohort · Fall 2026</span></p>
@@ -108,11 +115,15 @@
 
           <div class="cities reveal" data-fx>
             <figure class="city">
-              <div class="city__img"><img src="assets/photos/new-york.jpg" alt="" loading="lazy"></div>
+              <div class="city__img"><img src="assets/photos/new-york.webp"
+                srcset="assets/photos/new-york-700.webp 700w, assets/photos/new-york.webp 1400w"
+                sizes="(min-width: 1280px) 600px, 50vw" alt="" loading="lazy"></div>
               <figcaption><span data-i18n="club.capNY">New York</span><span class="city__co">40.71° N</span></figcaption>
             </figure>
             <figure class="city city--offset">
-              <div class="city__img"><img src="assets/photos/shanghai.jpg" alt="" loading="lazy"></div>
+              <div class="city__img"><img src="assets/photos/shanghai.webp"
+                srcset="assets/photos/shanghai-700.webp 700w, assets/photos/shanghai.webp 1400w"
+                sizes="(min-width: 1280px) 600px, 50vw" alt="" loading="lazy"></div>
               <figcaption><span data-i18n="club.capSH">Shanghai</span><span class="city__co">31.23° N</span></figcaption>
             </figure>
           </div>
@@ -180,7 +191,9 @@
 
         <div class="events__grid" data-fx>
           <figure class="event event--wide reveal">
-            <div class="event__img"><img src="assets/photos/event-kickoff.jpg" alt="Members at the RCFC Kickoff Meeting" loading="lazy"></div>
+            <div class="event__img"><img src="assets/photos/event-kickoff.webp"
+              srcset="assets/photos/event-kickoff-700.webp 700w, assets/photos/event-kickoff.webp 1200w"
+              sizes="(max-width: 760px) 100vw, 60vw" alt="Members at the RCFC Kickoff Meeting" loading="lazy"></div>
             <figcaption>
               <span class="event__t" data-i18n="events.e1.t">Kickoff Meeting</span>
               <span class="event__d" data-i18n="events.e1.d">The first general meeting: introducing the club, the executive board, and the semester plan.</span>
@@ -250,7 +263,9 @@
 
     <!-- ============ 05 MEMBERSHIP ============ -->
     <section class="membership" id="membership" data-fx>
-      <div class="membership__media" aria-hidden="true"><img src="assets/photos/skyline.jpg" alt="" loading="lazy"></div>
+      <div class="membership__media" aria-hidden="true"><img src="assets/photos/skyline.webp"
+        srcset="assets/photos/skyline-800.webp 800w, assets/photos/skyline.webp 1600w"
+        sizes="100vw" alt="" loading="lazy"></div>
       <div class="wrap membership__body reveal">
         <p class="sec-label sec-label--light"><span class="sec-num">05</span><span data-i18n="nav.membership">Membership</span></p>
         <h2 class="membership__title" data-i18n="membership.title">Membership Enquiries</h2>
