@@ -773,6 +773,33 @@ legend.field__label { margin-bottom: 10px; } /* a legend sits outside the fields
   .city:hover .city__img img, .event:hover .event__img img { transform: none; }
 }
 
+/* ---------- Material & craft ----------
+   Flat navy reads as fill; a whisper of film grain makes it read as material.
+   One static SVG tile, no animation, no paint cost beyond a composited layer. */
+.events, .footer { position: relative; }
+.hero::after, .chapter::after, .events::after, .membership::after, .footer::after {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .045;
+}
+
+/* Photos get a hairline inner frame, like mounted prints */
+.city__img { position: relative; }
+.city__img::after {
+  content: ""; position: absolute; inset: 0;
+  border: 1px solid rgba(255, 255, 255, .14); pointer-events: none;
+}
+.event::before {
+  content: ""; position: absolute; inset: 0; z-index: 2;
+  border: 1px solid rgba(255, 255, 255, .10); pointer-events: none;
+}
+
+/* Prices and counters align like a terminal, not a paragraph */
+.ticker { font-variant-numeric: tabular-nums; }
+.chapter__count { font-variant-numeric: tabular-nums; }
+
+::selection { background: var(--coral); color: var(--white); }
+
 /* ---------- Reveal ---------- */
 .js-motion .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .js-motion .reveal.is-in { opacity: 1; transform: none; }
