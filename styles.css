@@ -537,12 +537,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .officer { padding: 24px 24px 28px 0; border-bottom: 1px solid var(--line); }
 .officer + .officer { padding-left: 24px; border-left: 1px solid var(--line); }
 .officer:nth-child(4n+1) { padding-left: 0; border-left: 0; }
+/* Roles stay quiet: coral is the site's spark, eight of them is a string of lights */
 .officer__role {
-  font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--coral);
+  font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3);
 }
 .officer__name {
   margin-top: 10px; font-family: var(--display); font-weight: 600;
-  font-size: 20px; line-height: 1.2; letter-spacing: -0.015em;
+  font-size: 22px; line-height: 1.2; letter-spacing: -0.015em;
 }
 .officer__name a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color .2s; }
 .officer__name a:hover { border-bottom-color: var(--coral); }
