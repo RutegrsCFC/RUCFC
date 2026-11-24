@@ -245,7 +245,7 @@
     var lowPower = (nav_.hardwareConcurrency && nav_.hardwareConcurrency <= 4) ||
       (nav_.deviceMemory && nav_.deviceMemory <= 4) || conn.saveData === true;
     if (coarse || lowPower) return { tier: "lite", amp: lowPower && coarse ? 0.4 : 0.55, tau: 0, lowPower: !!lowPower };
-    return { tier: "full", amp: 0.55, tau: 0.11, lowPower: false };
+    return { tier: "full", amp: 0.55, tau: 0.14, lowPower: false };
   })();
   root.setAttribute("data-motion", MOTION.tier);
   root.style.setProperty("--amp", MOTION.amp);
